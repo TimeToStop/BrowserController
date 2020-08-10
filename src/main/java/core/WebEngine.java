@@ -28,7 +28,7 @@ public class WebEngine
 
     public static WebEngine create(Settings settings)
     {
-        Connection connection = Connection.connect(settings.path_to_debug_file);
+        Connection connection = Connection.connect(settings.port);
         if(connection != null)
         {
             return new WebEngine(connection);

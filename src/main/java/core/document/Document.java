@@ -26,11 +26,31 @@ public class Document
         return current_url;
     }
 
-    public Element get(ElementID elementID)
+    public ClickElement get(ClickElementID elementID)
     {
         if(elementID.getMater().equals(current_page))
         {
-            return new Element(elementID, engine);
+            return new ClickElement(elementID, engine);
+        }
+
+        return null;
+    }
+
+    public ReadElement get(ReadElementID elementID)
+    {
+        if(elementID.getMater().equals(current_page))
+        {
+            return new ReadElement(elementID, engine);
+        }
+
+        return null;
+    }
+
+    public InputElement get(InputElementID elementID)
+    {
+        if(elementID.getMater().equals(current_page))
+        {
+            return new InputElement(elementID, engine);
         }
 
         return null;

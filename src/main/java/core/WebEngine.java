@@ -1,10 +1,7 @@
 package core;
 
 import core.connection.Connection;
-import core.document.Document;
-import core.document.Element;
-import core.document.ElementID;
-import core.document.PageID;
+import core.document.*;
 import core.scripts.ExceptionJS;
 import core.scripts.FileNotFoundException;
 import core.scripts.ScriptsManager;
@@ -85,10 +82,21 @@ public class WebEngine
         console.error(msg);
     }
 
-    public Element get(ElementID id)
+    public ClickElement get(ClickElementID e)
     {
-        return document.get(id);
+        return document.get(e);
     }
+
+    public ReadElement get(ReadElementID e)
+    {
+        return document.get(e);
+    }
+
+    public InputElement get(InputElementID e)
+    {
+        return document.get(e);
+    }
+
 
     public void close()
     {

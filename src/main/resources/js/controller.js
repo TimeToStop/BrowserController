@@ -8,7 +8,7 @@ function clickByElementID(path)
     element_by_path(path).click();
 }
 
-function setTextToElement(path, text)
+function sendTextInput(path, text)
 {
-    element_by_path(path).value = text;
+    $(element_by_path(path)).val(text);
 }

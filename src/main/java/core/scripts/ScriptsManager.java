@@ -3,6 +3,7 @@ package core.scripts;
 import core.connection.BrowserAnswer;
 import core.WebEngine;
 
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 
 public class ScriptsManager

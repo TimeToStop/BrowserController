@@ -28,9 +28,10 @@ public class WebEngine
 
     public static WebEngine create(Settings settings)
     {
-        Connection connection = Connection.connect(settings.port);
+        Connection connection = Connection.connect(settings.port_file_path);
         if(connection != null)
         {
+            connection.initialization(settings.default_js_scripts);
             return new WebEngine(connection);
         }
         else

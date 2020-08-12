@@ -22,6 +22,7 @@ public class Document
         BrowserAnswer answer = engine.getConnection().loadURL(pageID.getRequest());
         current_page = pageID;
         current_url = new String(answer.getData(), StandardCharsets.UTF_8);
+        engine.forceExecuteJsFromFile("js/controller.js");
         return current_url;
     }
 

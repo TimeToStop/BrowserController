@@ -5,11 +5,12 @@ import core.other.Settings;
 
 public class Main
 {
-    public static void main(String[] args)
-    {
-        WebEngine engine = WebEngine.create(new Settings());
-        if(engine != null)
-        {
-        }
-    }
+	public static void main(String[] args)
+	{
+		WebEngine engine = WebEngine.create(new Settings());
+		if (engine != null)
+		{
+			// write your code
+		}
+	}
 }

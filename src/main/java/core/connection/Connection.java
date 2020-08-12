@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Connection
 {
+    private static final byte[] SPLIT = new byte[]{' '};
     private final Socket socket;
     private final DataInputStream in;
     private final DataOutputStream out;
@@ -36,9 +37,13 @@ public class Connection
                 System.err.println("Bad server answer.");
             }
         }
-        catch (IOException | NumberFormatException e)
+        catch (IOException e)
         {
             System.err.println(e.getMessage());
+        }
+        catch (NumberFormatException e)
+        {
+            System.err.println("Bad port number");
         }
 
         return null;
@@ -62,6 +67,21 @@ public class Connection
     public synchronized BrowserAnswer executeJsFile(String file_name)
     {
         return execute(true, CommandType.EXECUTE_JS_FROM_FILE.getData(), file_name.getBytes(StandardCharsets.UTF_8));
+    }
+
+    public synchronized void initialization(String[] default_js)
+    {
+        if(default_js.length != 0)
+        {
+            byte[] data =  compact(CommandType.INITIALIZATION.getData(), default_js[0].getBytes(StandardCharsets.UTF_8));
+
+            for(int i = 1; i < default_js.length; i++)
+            {
+                data = compact(data, Connection.SPLIT, default_js[i].getBytes(StandardCharsets.UTF_8));
+            }
+
+            execute(false, data);
+        }
     }
 
     public synchronized void close()

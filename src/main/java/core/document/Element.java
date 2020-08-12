@@ -18,7 +18,7 @@ public class Element
     {
         try
         {
-            return engine.executeJS("getInnerByElementPath(" + elementID.getPath() + ");");
+            return engine.executeJS("getInnerByElementPath('" + elementID.getPath() + "');");
         }
         catch (ExceptionJS e)
         {
@@ -30,7 +30,7 @@ public class Element
     {
         try
         {
-            engine.executeJS("clickByElementID(" + elementID.getPath() + ");");
+            engine.executeJS("clickByElementID('" + elementID.getPath() + "');");
             return true;
         }
         catch (ExceptionJS e)
@@ -41,6 +41,6 @@ public class Element
 
     public void sendInput(String data)
     {
-        engine.forceExecuteJS("setTextToElement('" + elementID.getPath() + "', '" + data + "');");
+        engine.forceExecuteJS("sendTextInput('" + elementID.getPath() + "', '" + data + "');");
     }
 }

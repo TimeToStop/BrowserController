@@ -49,22 +49,42 @@ public class WebEngine
 
     public String executeJS(String script) throws ExceptionJS
     {
-        return scripts_manager.executeJS(script);
+        return scripts_manager.executeJS(false, script);
     }
 
     public String executeJsFromFile(String file_name) throws FileNotFoundException, ExceptionJS
     {
-        return scripts_manager.executeJSFromFile(file_name);
+        return scripts_manager.executeJSFromFile(false, file_name);
+    }
+
+    public String executeJS(boolean wait_for_redirect,String script) throws ExceptionJS
+    {
+        return scripts_manager.executeJS(wait_for_redirect, script);
+    }
+
+    public String executeJsFromFile(boolean wait_for_redirect, String file_name) throws FileNotFoundException, ExceptionJS
+    {
+        return scripts_manager.executeJSFromFile(wait_for_redirect, file_name);
+    }
+
+    public String forceExecuteJS(boolean wait_for_redirect, String script)
+    {
+        return scripts_manager.forceExecuteJS(wait_for_redirect, script);
+    }
+
+    public String forceExecuteJsFromFile(boolean wait_for_redirect, String file_name)
+    {
+        return scripts_manager.forceExecuteJSFromFile(wait_for_redirect, file_name);
     }
 
     public String forceExecuteJS(String script)
     {
-        return scripts_manager.forceExecuteJS(script);
+        return scripts_manager.forceExecuteJS(false, script);
     }
 
     public String forceExecuteJsFromFile(String file_name)
     {
-        return scripts_manager.forceExecuteJSFromFile(file_name);
+        return scripts_manager.forceExecuteJSFromFile(false, file_name);
     }
 
     public void log(String msg)

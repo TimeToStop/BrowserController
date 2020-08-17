@@ -10,16 +10,8 @@ public class ClickElement extends Element
         super(id, engine);
     }
 
-    public boolean click()
+    public void click()
     {
-        try
-        {
-            engine.executeJS("clickByElementID('" + elementID.getPath() + "');");
-            return true;
-        }
-        catch (ExceptionJS e)
-        {
-            return false;
-        }
+        super.executeScript("clickByElementID('" + elementID.getPath() + "');");
     }
 }

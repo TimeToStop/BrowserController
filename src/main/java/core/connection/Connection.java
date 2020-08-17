@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Connection
 {
+    private static final byte WAIT_FOR_REDIRECT = 1;
     private static final byte[] SPLIT = new byte[]{' '};
     private final Socket socket;
     private final DataInputStream in;
@@ -59,14 +60,26 @@ public class Connection
         execute(false, CommandType.LOG.getData(), new byte[]{type.getValue()}, msg.getBytes(StandardCharsets.UTF_8));
     }
 
-    public synchronized BrowserAnswer executeJs(String script)
+    public synchronized BrowserAnswer executeJs(boolean wait_for_redirect, String script)
     {
-        return execute(true, CommandType.EXECUTE_JS.getData(), script.getBytes(StandardCharsets.UTF_8));
+        byte header = 0;
+        if(wait_for_redirect)
+        {
+            header |= WAIT_FOR_REDIRECT;
+        }
+
+        return execute(true, CommandType.EXECUTE_JS.getData(), new byte[] {header}, script.getBytes(StandardCharsets.UTF_8));
     }
 
-    public synchronized BrowserAnswer executeJsFile(String file_name)
+    public synchronized BrowserAnswer executeJsFile(boolean wait_for_redirect, String file_name)
     {
-        return execute(true, CommandType.EXECUTE_JS_FROM_FILE.getData(), file_name.getBytes(StandardCharsets.UTF_8));
+        byte header = 0;
+        if(wait_for_redirect)
+        {
+            header |= WAIT_FOR_REDIRECT;
+        }
+
+        return execute(true, CommandType.EXECUTE_JS_FROM_FILE.getData(), new byte[] {header}, file_name.getBytes(StandardCharsets.UTF_8));
     }
 
     public synchronized void initialization(String[] default_js)

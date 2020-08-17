@@ -1,6 +1,5 @@
 package core.document;
 
-import core.scripts.ExceptionJS;
 import core.WebEngine;
 
 public class Element
@@ -12,5 +11,15 @@ public class Element
     {
         this.engine = engine;
         this.elementID = elementID;
+    }
+
+    public boolean exists()
+    {
+        return engine.forceExecuteJS("exists(\"" + elementID.getPath() + "\")").equals("true");
+    }
+
+    public String executeScript(String script)
+    {
+        return engine.forceExecuteJS(elementID.isWaitForRedirect(), script);
     }
 }

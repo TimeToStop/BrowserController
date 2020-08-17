@@ -10,7 +10,8 @@ public class Main
 		WebEngine engine = WebEngine.create(new Settings());
 		if (engine != null)
 		{
-			// write your code
+			// write your code here
+			engine.close();
 		}
 	}
 }

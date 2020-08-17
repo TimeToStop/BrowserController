@@ -2,8 +2,8 @@ package core.document;
 
 public class ClickElementID extends ElementID
 {
-    public ClickElementID(PageID master, String path)
+    public ClickElementID(boolean waitForRedirect, PageID master, String path)
     {
-        super(master, path);
+        super(waitForRedirect, master, path);
     }
 }

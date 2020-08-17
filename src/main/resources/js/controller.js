@@ -12,3 +12,8 @@ function sendTextInput(path, text)
 {
     $(element_by_path(path)).val(text);
 }
+
+function exists(path)
+{
+    return element_by_path(path) !== null;
+}

@@ -20,9 +20,9 @@ public class ScriptsManager
         this.engine = engine;
     }
 
-    public String executeJS(String script) throws ExceptionJS
+    public String executeJS(boolean wait_for_redirect, String script) throws ExceptionJS
     {
-        BrowserAnswer answer = engine.getConnection().executeJs(script);
+        BrowserAnswer answer = engine.getConnection().executeJs(wait_for_redirect, script);
         String result = new String(answer.getData(), StandardCharsets.UTF_8);
         if((answer.getHeader() & ScriptsManager.EXECUTE_JS_EXCEPTION) != 0)
         {
@@ -34,9 +34,9 @@ public class ScriptsManager
         }
     }
 
-    public String executeJSFromFile(String file_name) throws ExceptionJS, FileNotFoundException
+    public String executeJSFromFile(boolean wait_for_redirect, String file_name) throws ExceptionJS, FileNotFoundException
     {
-        BrowserAnswer answer = engine.getConnection().executeJsFile(file_name);
+        BrowserAnswer answer = engine.getConnection().executeJsFile(wait_for_redirect, file_name);
         String result = new String(answer.getData(), StandardCharsets.UTF_8);
         System.out.println(result);
         if((answer.getHeader() & ScriptsManager.EXECUTE_JS_FROM_FILE_NOT_FOUND) != 0)
@@ -53,17 +53,17 @@ public class ScriptsManager
         }
     }
 
-    public String forceExecuteJS(String script)
+    public String forceExecuteJS(boolean wait_for_redirect, String script)
     {
-        BrowserAnswer answer = engine.getConnection().executeJs(script);
+        BrowserAnswer answer = engine.getConnection().executeJs(wait_for_redirect, script);
         String f = new String(answer.getData(), StandardCharsets.UTF_8);
         System.out.println(f);
         return f;
     }
 
-    public String forceExecuteJSFromFile(String file_name)
+    public String forceExecuteJSFromFile(boolean wait_for_redirect, String file_name)
     {
-        BrowserAnswer answer = engine.getConnection().executeJsFile(file_name);
+        BrowserAnswer answer = engine.getConnection().executeJsFile(wait_for_redirect, file_name);
         return new String(answer.getData(), StandardCharsets.UTF_8);
     }
 }
